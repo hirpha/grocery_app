@@ -1,8 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
 import 'package:grocery_app/models/product.dart';
 
 import '../utils/colors.dart';
@@ -18,7 +15,7 @@ class ProductWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(10),
+      padding: const EdgeInsets.all(10),
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(20), color: Colors.white),
       child: Stack(children: [
@@ -47,11 +44,11 @@ class ProductWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                placeholder: (context, url) => Center(
-                    child: Container(
+                placeholder: (context, url) => const Center(
+                    child: SizedBox(
                         height: 30,
                         width: 30,
-                        child: const CircularProgressIndicator())),
+                        child: CircularProgressIndicator())),
                 errorWidget: (context, url, error) {
                   return const Icon(
                     Icons.person,
@@ -77,19 +74,20 @@ class ProductWidget extends StatelessWidget {
               children: [
                 Text(
                   product.name!,
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
+                  style: const TextStyle(
+                      fontWeight: FontWeight.bold, fontSize: 16),
                 ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Text("\$" + product.singleDeal!.originalPrice!,
-                        style: TextStyle(
+                    Text("\$${product.singleDeal!.originalPrice!}",
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 16)),
                     TextButton(
                         style: TextButton.styleFrom(
                             foregroundColor: ColorProvider().red),
                         onPressed: () {},
-                        child: Text("Add to cart"))
+                        child: const Text("Add to cart"))
                   ],
                 ),
               ],

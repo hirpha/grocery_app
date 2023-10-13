@@ -6,6 +6,7 @@ import 'package:grocery_app/utils/Session.dart';
 import '../../bloc/Auth/auth_bloc.dart';
 import '../../bloc/Auth/auth_event.dart';
 import '../../bloc/Auth/auth_state.dart';
+import '../../bloc/category/category_event.dart';
 import '../../models/auth.dart';
 import '../../utils/colors.dart';
 import '../home/home.dart';
@@ -87,10 +88,10 @@ class _SigninScreenState extends State<SigninScreen> {
                 decoration: const InputDecoration(
                   counterText: '',
                   prefixIconConstraints:
-                      const BoxConstraints(minWidth: 0, minHeight: 0),
+                      BoxConstraints(minWidth: 0, minHeight: 0),
                   alignLabelWithHint: true,
                   labelText: "Phone",
-                  hintStyle: const TextStyle(
+                  hintStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     color: Colors.black45,
                   ),
@@ -200,15 +201,15 @@ class _SigninScreenState extends State<SigninScreen> {
                       if (state is AuthSigningIn) {
                         return Row(
                           mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Container(
+                          children: const [
+                            SizedBox(
                               height: 20,
                               width: 20,
-                              child: const CircularProgressIndicator(
+                              child: CircularProgressIndicator(
                                 color: Colors.white,
                               ),
                             ),
-                            const Text(
+                            Text(
                               "   signing in...",
                               style: TextStyle(color: Colors.white),
                             )

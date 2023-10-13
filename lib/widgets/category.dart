@@ -1,9 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
-import 'package:flutter/widgets.dart';
-import 'package:grocery_app/models/category.dart';
 import 'package:grocery_app/models/category.dart';
 
 import '../utils/colors.dart';
@@ -19,10 +15,10 @@ class CategoryWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration: BoxDecoration(boxShadow: [
+      decoration: const BoxDecoration(boxShadow: [
         BoxShadow(
           color: Colors.grey,
-          offset: const Offset(
+          offset: Offset(
             5.0,
             5.0,
           ),
@@ -57,11 +53,11 @@ class CategoryWidget extends StatelessWidget {
                     ),
                   ),
                 ),
-                placeholder: (context, url) => Center(
-                    child: Container(
+                placeholder: (context, url) => const Center(
+                    child: SizedBox(
                         height: 30,
                         width: 30,
-                        child: const CircularProgressIndicator())),
+                        child: CircularProgressIndicator())),
                 errorWidget: (context, url, error) {
                   return const Icon(
                     Icons.person,
@@ -89,49 +85,5 @@ class CategoryWidget extends StatelessWidget {
         ],
       ),
     );
-    // return Container(
-    //   height: 200,
-    //   padding: EdgeInsets.all(10),
-    //   decoration: BoxDecoration(
-    //       borderRadius: BorderRadius.circular(20), color: Colors.white),
-    //   child: Column(children: [
-    // Container(
-    //   decoration: BoxDecoration(
-    //     borderRadius: BorderRadius.circular(20),
-    //     color: Colors.white,
-    //   ),
-    //   height: double.infinity,
-    //   width: double.infinity,
-    //   child: CachedNetworkImage(
-    //     imageUrl: imageBaseUrl + category.primaryImage!,
-    //     imageBuilder: (
-    //       context,
-    //       imageProvider,
-    //     ) =>
-    //         Container(
-    //       decoration: BoxDecoration(
-    //         image: DecorationImage(
-    //           image: imageProvider,
-    //           fit: BoxFit.cover,
-    //         ),
-    //       ),
-    //     ),
-    //     placeholder: (context, url) => Center(
-    //         child: Container(
-    //             height: 30,
-    //             width: 30,
-    //             child: const CircularProgressIndicator())),
-    //     errorWidget: (context, url, error) {
-    //       return const Icon(
-    //         Icons.person,
-    //         color: Colors.black,
-    //         size: 50,
-    //       );
-    //     },
-    //   ),
-    // ),
-    //     Text(category.name!)
-    //   ]),
-    // );
   }
 }

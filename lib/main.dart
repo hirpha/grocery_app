@@ -5,12 +5,12 @@ import 'package:grocery_app/repository/auth_repo.dart';
 import 'package:grocery_app/repository/category_repo.dart';
 import 'package:grocery_app/repository/product_repo.dart';
 import 'package:grocery_app/route/app_route.dart';
-import 'package:grocery_app/screens/splash/splash.dart';
 import 'package:grocery_app/utils/colors.dart';
 import 'package:http/http.dart' as http;
 
 import 'bloc/Auth/auth_bloc.dart';
 import 'bloc/category/category_bloc.dart';
+import 'bloc/category/category_event.dart';
 
 void main() {
   final AuthRepository authRepository =

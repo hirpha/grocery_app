@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/bloc/product/product_bloc.dart';
 import 'package:grocery_app/screens/home/home.dart';
@@ -10,6 +8,8 @@ import 'package:grocery_app/utils/colors.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../../bloc/category/category_bloc.dart';
+import '../../bloc/category/category_event.dart';
+import '../../bloc/product/product_event.dart';
 
 class SplashScreen extends StatefulWidget {
   static String routeName = '/splash-screen';

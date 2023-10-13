@@ -1,15 +1,14 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:flutter_onboarding_slider/flutter_onboarding_slider.dart';
 import 'package:grocery_app/bloc/product/product_bloc.dart';
 import 'package:grocery_app/utils/colors.dart';
 import 'package:onboarding_animation/onboarding_animation.dart';
 
 import '../bloc/category/category_bloc.dart';
-import '../models/product.dart';
+import '../bloc/category/category_event.dart';
+import '../bloc/product/product_event.dart';
+import '../bloc/product/product_state.dart';
 import '../utils/end_points.dart';
 
 class ProductDetail extends StatefulWidget {
@@ -32,12 +31,12 @@ class _ProductDetailState extends State<ProductDetail> {
       child: Scaffold(body:
           BlocBuilder<ProductBloc, ProductState>(builder: (context, state) {
         if (state is ProductLoadSuccess) {
-          return Container(
+          return SizedBox(
             height: MediaQuery.of(context).size.height,
             child: Column(
               children: [
                 Stack(children: [
-                  Container(
+                  SizedBox(
                     height: MediaQuery.of(context).size.height * .4,
                     child: Positioned(
                       left: 0,
@@ -46,7 +45,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       child: OnBoardingAnimation(
                         indicatorExpansionFactor: 4,
                         indicatorStrokeWidth: 6,
-                        indicatorInActiveDotDecoration: DotDecoration(
+                        indicatorInActiveDotDecoration: const DotDecoration(
                           height: 20,
                           verticalOffset: 20,
                         ),
@@ -69,12 +68,11 @@ class _ProductDetailState extends State<ProductDetail> {
                                     ),
                                   ),
                                 ),
-                                placeholder: (context, url) => Center(
-                                    child: Container(
+                                placeholder: (context, url) => const Center(
+                                    child: SizedBox(
                                         height: 30,
                                         width: 30,
-                                        child:
-                                            const CircularProgressIndicator())),
+                                        child: CircularProgressIndicator())),
                                 errorWidget: (context, url, error) {
                                   return const Icon(
                                     Icons.person,
@@ -103,21 +101,21 @@ class _ProductDetailState extends State<ProductDetail> {
                             BlocProvider.of<CategoryBloc>(context)
                                 .add(CategoryLoad());
                           },
-                          icon: Icon(
+                          icon: const Icon(
                             Icons.arrow_back,
                             size: 30,
                             color: Colors.white,
                           )))
                 ]),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         Text(state.product!.name!,
-                            style: TextStyle(
+                            style: const TextStyle(
                                 fontSize: 24, fontWeight: FontWeight.w500)),
-                        Container(
+                        SizedBox(
                           height: 50,
                           width: MediaQuery.of(context).size.width * .3,
                           child: ElevatedButton(
@@ -127,67 +125,65 @@ class _ProductDetailState extends State<ProductDetail> {
                                   shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(10))),
                               onPressed: () {},
-                              child: Text(
+                              child: const Text(
                                 "ADD TO CART",
                               )),
                         )
                       ]),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$" + state.product!.singleDeal!.originalPrice!,
+                        "\$${state.product!.singleDeal!.originalPrice!}",
                         style: TextStyle(
                             color: ColorProvider().lightYellow,
                             fontSize: 24,
                             fontWeight: FontWeight.w600),
                       ),
-                      Container(
-                        child: Row(children: [
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.remove,
-                              color: ColorProvider().lightYellow,
-                              size: 30,
-                            ),
+                      Row(children: [
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.remove,
+                            color: ColorProvider().lightYellow,
+                            size: 30,
                           ),
-                          Text(
-                            state.product!.singleDeal!.availableQuantity!,
-                            style: TextStyle(
-                                fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        Text(
+                          state.product!.singleDeal!.availableQuantity!,
+                          style: const TextStyle(
+                              fontSize: 20, fontWeight: FontWeight.bold),
+                        ),
+                        IconButton(
+                          onPressed: () {},
+                          icon: Icon(
+                            Icons.add,
+                            color: ColorProvider().lightYellow,
+                            size: 30,
                           ),
-                          IconButton(
-                            onPressed: () {},
-                            icon: Icon(
-                              Icons.add,
-                              color: ColorProvider().lightYellow,
-                              size: 30,
-                            ),
-                          ),
-                        ]),
-                      )
+                        ),
+                      ])
                     ],
                   ),
                 ),
                 Container(
-                  padding: EdgeInsets.all(10),
+                  padding: const EdgeInsets.all(10),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Container(
-                          padding: EdgeInsets.symmetric(vertical: 5),
-                          child: Text(
+                          padding: const EdgeInsets.symmetric(vertical: 5),
+                          child: const Text(
                             "Description",
                             style: TextStyle(
                                 fontSize: 18, fontWeight: FontWeight.bold),
                           )),
                       Row(
                         children: [
-                          Container(
+                          SizedBox(
                             width: 100,
                             child: Divider(
                               thickness: 2,
@@ -195,7 +191,7 @@ class _ProductDetailState extends State<ProductDetail> {
                               height: 10,
                             ),
                           ),
-                          Expanded(
+                          const Expanded(
                             child: Divider(
                               thickness: 2,
                               color: Color.fromARGB(255, 197, 197, 197),
@@ -205,7 +201,7 @@ class _ProductDetailState extends State<ProductDetail> {
                       ),
                       Text(
                         state.product!.longDescription!,
-                        style: TextStyle(
+                        style: const TextStyle(
                           fontSize: 14,
                           fontWeight: FontWeight.w400,
                         ),
@@ -217,7 +213,7 @@ class _ProductDetailState extends State<ProductDetail> {
             ),
           );
         }
-        return Center(
+        return const Center(
           child: CircularProgressIndicator(),
         );
       })),

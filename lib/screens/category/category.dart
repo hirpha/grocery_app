@@ -5,6 +5,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:grocery_app/bloc/category/category_bloc.dart';
 import 'package:grocery_app/widgets/category.dart';
 
+import '../../bloc/category/category_state.dart';
 import '../../bloc/product/product_bloc.dart';
 import '../../widgets/product.dart';
 
@@ -24,16 +25,19 @@ class _CategoryScreenState extends State<CategoryScreen> {
         (size.height - kToolbarHeight - size.height * .5) / 2;
     final double itemWidth = size.width / 2;
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       appBar: AppBar(
-        leading: Icon(Icons.arrow_back),
+        leading: const Icon(Icons.arrow_back),
         centerTitle: true,
         elevation: 0,
         backgroundColor: Colors.white,
-        title: Text("Categories"),
+        title: const Text(
+          "Categories",
+          style: TextStyle(fontWeight: FontWeight.bold),
+        ),
       ),
       body: Container(
-          padding: EdgeInsets.all(10),
+          padding: const EdgeInsets.all(10),
           height: MediaQuery.of(context).size.height * .9,
           child: BlocBuilder<CategoryBloc, CategoryState>(
               builder: (context, state) {
@@ -47,16 +51,12 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   shrinkWrap: true,
                   children: state.categories!
                       .map((cat) => CategoryWidget(category: cat))
-                      .toList()
-
-                  // Add more items as needed
-
-                  );
+                      .toList());
             }
 
             return Container(
-              margin: EdgeInsets.only(top: 100),
-              child: Center(
+              margin: const EdgeInsets.only(top: 100),
+              child: const Center(
                 child: CircularProgressIndicator(),
               ),
             );
@@ -64,24 +64,3 @@ class _CategoryScreenState extends State<CategoryScreen> {
     );
   }
 }
- // SizedBox(
-          //   height: 20,
-          // ),
-          // Container(
-          //   padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-          //   alignment: Alignment.bottomCenter,
-          //   child: Container(
-          //     margin: EdgeInsets.only(top: 20),
-          //     child: Row(
-          //       crossAxisAlignment: CrossAxisAlignment.end,
-          //       mainAxisAlignment: MainAxisAlignment.start,
-          //       children: [
-          //         Icon(Icons.arrow_back),
-          //         Text(
-          //           "Categories",
-          //           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-          //         )
-          //       ],
-          //     ),
-          //   ),
-          // ),

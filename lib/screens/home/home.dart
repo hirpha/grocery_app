@@ -16,6 +16,10 @@ import 'package:grocery_app/screens/profile.dart';
 import 'package:grocery_app/utils/Session.dart';
 import 'package:grocery_app/utils/end_points.dart';
 
+import '../../bloc/category/category_event.dart';
+import '../../bloc/category/category_state.dart';
+import '../../bloc/product/product_event.dart';
+import '../../bloc/product/product_state.dart';
 import '../../utils/colors.dart';
 import '../../widgets/product.dart';
 import '../product_detail.dart';
@@ -66,16 +70,16 @@ class _HomeScreenState extends State<HomeScreen>
         returnWidget = home();
         break;
       case 1:
-        returnWidget = CategoryScreen();
+        returnWidget = const CategoryScreen();
         break;
       case 2:
-        returnWidget = CartScreen();
+        returnWidget = const CartScreen();
         break;
       case 3:
-        returnWidget = FavoriteScreen();
+        returnWidget = const FavoriteScreen();
         break;
       case 4:
-        returnWidget = ProfileScreen();
+        returnWidget = const ProfileScreen();
         break;
       default:
         returnWidget = body();
@@ -91,13 +95,13 @@ class _HomeScreenState extends State<HomeScreen>
     final double itemWidth = size.width / 2;
     return Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
       Container(
-        padding: EdgeInsets.all(20),
+        padding: const EdgeInsets.all(20),
         color: Colors.white,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              margin: EdgeInsets.symmetric(vertical: 10),
+              margin: const EdgeInsets.symmetric(vertical: 10),
               child: Text(
                 "Good morning",
                 style: TextStyle(
@@ -121,7 +125,7 @@ class _HomeScreenState extends State<HomeScreen>
                   width: 40,
                   child: Stack(
                     children: [
-                      Positioned(
+                      const Positioned(
                         right: 0,
                         left: 0,
                         child: Icon(
@@ -149,18 +153,18 @@ class _HomeScreenState extends State<HomeScreen>
       SingleChildScrollView(
         child: Container(
           width: double.infinity,
-          margin: EdgeInsets.all(10),
+          margin: const EdgeInsets.all(10),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Container(
-                padding: EdgeInsets.all(10),
+                padding: const EdgeInsets.all(10),
                 child: Column(
                   children: [
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
-                        Text(
+                        const Text(
                           "Category",
                           style: TextStyle(
                               fontSize: 18, fontWeight: FontWeight.bold),
@@ -173,7 +177,7 @@ class _HomeScreenState extends State<HomeScreen>
                               BlocProvider.of<CategoryBloc>(context)
                                   .add(CategoryLoad());
                             },
-                            icon: Icon(Icons.arrow_forward))
+                            icon: const Icon(Icons.arrow_forward))
                       ],
                     ),
                     Container(
@@ -190,7 +194,7 @@ class _HomeScreenState extends State<HomeScreen>
                                 return Container(
                                   width: 100,
                                   height: 100,
-                                  margin: EdgeInsets.all(10),
+                                  margin: const EdgeInsets.all(10),
                                   decoration: BoxDecoration(
                                     color: Colors.white,
                                     borderRadius: BorderRadius.circular(10),
@@ -239,7 +243,7 @@ class _HomeScreenState extends State<HomeScreen>
                               },
                               itemCount: state.categories!.length);
                         }
-                        return Center(
+                        return const Center(
                           child: CircularProgressIndicator(),
                         );
                       }),
@@ -248,8 +252,8 @@ class _HomeScreenState extends State<HomeScreen>
                 ),
               ),
               Container(
-                padding: EdgeInsets.symmetric(vertical: 10),
-                child: Text(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: const Text(
                   "Latest Products",
                   style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
                 ),
@@ -282,7 +286,7 @@ class _HomeScreenState extends State<HomeScreen>
 
                         );
                   }
-                  return Center(child: CircularProgressIndicator());
+                  return const Center(child: CircularProgressIndicator());
                 }),
               ),
             ],
@@ -294,24 +298,21 @@ class _HomeScreenState extends State<HomeScreen>
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+    SystemChrome.setSystemUIOverlayStyle(const SystemUiOverlayStyle(
       systemNavigationBarColor: Colors.white,
       statusBarColor: Colors.white,
       statusBarBrightness: Brightness.dark,
       statusBarIconBrightness: Brightness.dark,
       systemNavigationBarIconBrightness: Brightness.dark,
     ));
-    var size = MediaQuery.of(context).size;
-    final double itemHeight = (size.height - kToolbarHeight - 400) / 2;
-    final double itemWidth = size.width / 2;
 
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 243, 243, 243),
+      backgroundColor: const Color.fromARGB(255, 243, 243, 243),
       body: body(),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
         selectedItemColor: ColorProvider().lightYellow,
-        unselectedItemColor: Color.fromARGB(146, 8, 8, 8),
+        unselectedItemColor: const Color.fromARGB(146, 8, 8, 8),
         type: BottomNavigationBarType.fixed,
         onTap: _onItemTapped,
         items: const <BottomNavigationBarItem>[

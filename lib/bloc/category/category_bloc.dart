@@ -4,6 +4,8 @@ import 'package:grocery_app/utils/Session.dart';
 
 import '../../models/category.dart';
 import '../../repository/category_repo.dart';
+import 'category_event.dart';
+import 'category_state.dart';
 
 class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
   final CategoryRepository categoryRepository;
@@ -20,32 +22,4 @@ class CategoryBloc extends Bloc<CategoryEvent, CategoryState> {
       }
     });
   }
-}
-
-abstract class CategoryEvent extends Equatable {
-  const CategoryEvent();
-}
-
-class CategoryLoad extends CategoryEvent {
-  @override
-  List<Object?> get props => throw UnimplementedError();
-}
-
-class CategoryState extends Equatable {
-  const CategoryState();
-
-  @override
-  List<Object> get props => [];
-}
-
-class CategoryLoading extends CategoryState {}
-
-class CategoryLoadSuccess extends CategoryState {
-  final List<Category>? categories;
-  const CategoryLoadSuccess({this.categories});
-}
-
-class CategoryLoadFaulure extends CategoryState {
-  final String? resaon;
-  const CategoryLoadFaulure({this.resaon, required String reason});
 }

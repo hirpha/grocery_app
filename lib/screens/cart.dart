@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/src/widgets/placeholder.dart';
 import 'package:grocery_app/screens/order_submitted.dart';
 import 'package:grocery_app/utils/colors.dart';
 
@@ -15,7 +13,7 @@ class _CartScreenState extends State<CartScreen> {
   Widget item(String name, String type, int price, int amount) {
     return Container(
       height: 120,
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(10),
       alignment: Alignment.bottomLeft,
       decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
       child: Row(
@@ -25,7 +23,7 @@ class _CartScreenState extends State<CartScreen> {
             width: 100,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
-                image: DecorationImage(
+                image: const DecorationImage(
                     fit: BoxFit.cover,
                     image: AssetImage(
                       "assets/images/placeholderbanner.png",
@@ -33,7 +31,7 @@ class _CartScreenState extends State<CartScreen> {
           ),
           Expanded(
             child: Container(
-              margin: EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 10),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -42,14 +40,14 @@ class _CartScreenState extends State<CartScreen> {
                     children: [
                       Text(
                         type,
-                        style: TextStyle(
+                        style: const TextStyle(
                             color: Colors.black12,
                             fontWeight: FontWeight.bold,
                             fontSize: 20),
                       ),
                       Text(
                         name,
-                        style: TextStyle(
+                        style: const TextStyle(
                             fontWeight: FontWeight.bold, fontSize: 20),
                       ),
                     ],
@@ -58,8 +56,8 @@ class _CartScreenState extends State<CartScreen> {
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
                       Text(
-                        "\$" + price.toString(),
-                        style: TextStyle(
+                        "\$$price",
+                        style: const TextStyle(
                             color: Color.fromARGB(255, 230, 131, 17),
                             fontSize: 18,
                             fontWeight: FontWeight.bold),
@@ -67,7 +65,7 @@ class _CartScreenState extends State<CartScreen> {
                       Container(
                         alignment: Alignment.center,
                         decoration: BoxDecoration(
-                            color: Color.fromARGB(255, 209, 208, 208),
+                            color: const Color.fromARGB(255, 209, 208, 208),
                             borderRadius: BorderRadius.circular(10)),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -80,7 +78,7 @@ class _CartScreenState extends State<CartScreen> {
                                 size: 30,
                               ),
                             ),
-                            Text(
+                            const Text(
                               '3',
                               style: TextStyle(
                                   fontSize: 20, fontWeight: FontWeight.bold),
@@ -113,7 +111,7 @@ class _CartScreenState extends State<CartScreen> {
       appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Items Details",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           )),
@@ -124,13 +122,13 @@ class _CartScreenState extends State<CartScreen> {
           item('Fruits', "Banana", 23, 4),
           item('Fruits', "Banana", 23, 4),
           Container(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               width: double.infinity,
               alignment: Alignment.center,
-              child: Text("Total \$6.6")),
+              child: const Text("Total \$6.6")),
           Container(
               height: 60,
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       elevation: 0,
@@ -140,7 +138,7 @@ class _CartScreenState extends State<CartScreen> {
                   onPressed: () {
                     Navigator.pushNamed(context, OrderSubmit.routeName);
                   },
-                  child: Text(
+                  child: const Text(
                     "PLACE ORDER",
                     style: TextStyle(fontWeight: FontWeight.bold),
                   )))

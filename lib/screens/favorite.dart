@@ -13,7 +13,7 @@ class FavoriteScreen extends StatefulWidget {
 Widget item(String name, String type, double price, int amount) {
   return Container(
     height: 120,
-    margin: EdgeInsets.all(10),
+    margin: const EdgeInsets.all(10),
     alignment: Alignment.bottomLeft,
     decoration: BoxDecoration(borderRadius: BorderRadius.circular(10)),
     child: Row(
@@ -24,7 +24,7 @@ Widget item(String name, String type, double price, int amount) {
           width: 100,
           decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              image: DecorationImage(
+              image: const DecorationImage(
                   fit: BoxFit.cover,
                   image: AssetImage(
                     "assets/images/placeholderbanner.png",
@@ -35,17 +35,18 @@ Widget item(String name, String type, double price, int amount) {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             Container(
-              margin: EdgeInsets.only(left: 10),
+              margin: const EdgeInsets.only(left: 10),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     type,
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                    style: const TextStyle(
+                        fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                   Text(
-                    "\$" + price.toString(),
+                    "\$$price",
                     style: TextStyle(
                         color: ColorProvider().lightYellow,
                         fontSize: 16,
@@ -58,16 +59,17 @@ Widget item(String name, String type, double price, int amount) {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               crossAxisAlignment: CrossAxisAlignment.end,
               children: [
-                Icon(
+                const Icon(
                   Icons.favorite,
                   color: Colors.pink,
                 ),
                 Container(
-                    padding: EdgeInsets.symmetric(horizontal: 20, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 20, vertical: 10),
                     decoration: BoxDecoration(
-                        color: Color.fromARGB(255, 231, 229, 229),
+                        color: const Color.fromARGB(255, 231, 229, 229),
                         borderRadius: BorderRadius.circular(10)),
-                    child: Text("Add to cart"))
+                    child: const Text("Add to cart"))
               ],
             )
           ],
@@ -84,7 +86,7 @@ class _FavoriteScreenState extends State<FavoriteScreen> {
       appBar: AppBar(
           elevation: 0,
           backgroundColor: Colors.white,
-          title: Text(
+          title: const Text(
             "Favorite's",
             style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
           )),
